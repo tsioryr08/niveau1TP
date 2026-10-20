@@ -13,8 +13,6 @@ INSERT INTO articles(libelle, prix) VALUES
 ('Manuel mathematiques CM2', 15000),
 ('Cartable', 35000);
 
--- verification etape1
-SELECT libelle, prix FROM articles ORDER BY prix ASC;
 
 REPONSES PIEGES 
 -- J'ai choisi un type INTEGER pour le prix car il est enonce dans le tp
