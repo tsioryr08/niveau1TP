@@ -16,3 +16,16 @@ ORDER BY v.id;
 -- verification etape4
 SELECT v.id, COALESCE(c.nom, 'Client de passage') as nom_client
 FROM vente v LEFT JOIN clients c ON v.id_client=c.id;
+
+-- verification etape5
+SELECT
+    ve.id,
+    ve.nom,
+    ve.prenom,
+    COUNT(DISTINCT v.id) AS nombre_ventes,
+    COALESCE(SUM(a.prix * dv.quantite), 0) AS chiffre_affaires
+FROM vendeur ve
+LEFT JOIN vente v ON v.id_vendeur = ve.id
+LEFT JOIN detail_vente dv ON dv.id_vente = v.id
+LEFT JOIN articles a ON a.id = dv.id_article
+GROUP BY ve.id, ve.nom, ve.prenom;
