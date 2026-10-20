@@ -13,4 +13,6 @@ JOIN articles a ON a.id=dv.id_article
 GROUP BY v.id
 ORDER BY v.id;
 
-
+-- verification etape4
+SELECT v.id, COALESCE(c.nom, 'Client de passage') as nom_client
+FROM vente v LEFT JOIN clients c ON v.id_client=c.id;
