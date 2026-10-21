@@ -58,3 +58,13 @@ LEFT JOIN (
 WHERE t.montant_du > COALESCE(p.montant_paye, 0)
 
 ORDER BY v.id;
+
+--- verification etape8
+SELECT
+    ns.nom AS niveau,
+    SUM(lf.quantite * a.prix) AS cout_total
+FROM niveau_scolaire ns
+JOIN liste_fourniture lf ON lf.id_niveau = ns.id
+JOIN articles a ON a.id = lf.id_article
+GROUP BY ns.id, ns.nom
+ORDER BY ns.id;
