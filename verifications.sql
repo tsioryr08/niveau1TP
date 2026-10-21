@@ -29,3 +29,32 @@ LEFT JOIN vente v ON v.id_vendeur = ve.id
 LEFT JOIN detail_vente dv ON dv.id_vente = v.id
 LEFT JOIN articles a ON a.id = dv.id_article
 GROUP BY ve.id, ve.nom, ve.prenom;
+
+-- verification etape6
+SELECT
+    v.id AS id_vente,
+    t.montant_du,
+    COALESCE(p.montant_paye, 0) AS montant_paye,
+    t.montant_du - COALESCE(p.montant_paye, 0) AS reste_a_payer
+FROM vente v
+
+JOIN (
+    SELECT
+        dv.id_vente,
+        SUM(dv.quantite * a.prix) AS montant_du
+    FROM detail_vente dv
+    JOIN articles a ON dv.id_article = a.id
+    GROUP BY dv.id_vente
+) t ON v.id = t.id_vente
+
+LEFT JOIN (
+    SELECT
+        id_vente,
+        SUM(montant) AS montant_paye
+    FROM paiement
+    GROUP BY id_vente
+) p ON v.id = p.id_vente
+
+WHERE t.montant_du > COALESCE(p.montant_paye, 0)
+
+ORDER BY v.id;

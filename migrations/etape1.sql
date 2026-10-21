@@ -1,5 +1,5 @@
 CREATE DATABASE papeterie;
-USE papeterie;
+\c papeterie;
 
 CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
