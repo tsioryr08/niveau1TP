@@ -1,3 +1,6 @@
+CREATE DATABASE papeterie;
+USE papeterie;
+
 CREATE TABLE articles(
     id SERIAL PRIMARY KEY,
     libelle VARCHAR(90) NOT NULL,
