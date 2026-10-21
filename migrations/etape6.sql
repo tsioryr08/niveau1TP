@@ -33,3 +33,10 @@ INSERT INTO paiement (id_vente, id_mode_paiement, montant) VALUES
 (2, 2, 10000),
 (2, 1, 5000),
 (3, 4, 20000);
+
+-- REPONSES PIEGES
+-- La colonne montant_paye ne suffit pas, car une vente peut avoir 
+-- plusieurs paiements avec des montants et des modes differents
+
+-- La table de reference mode_paiement est preferable, car elle permet de 
+-- gerer les modes de paiement separement et d'eviter les valeurs repetees ou incoherentes 
