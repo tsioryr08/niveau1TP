@@ -68,3 +68,14 @@ JOIN liste_fourniture lf ON lf.id_niveau = ns.id
 JOIN articles a ON a.id = lf.id_article
 GROUP BY ns.id, ns.nom
 ORDER BY ns.id;
+
+-- verification etape9
+SELECT
+    pack.libelle AS pack,
+    pack.prix AS prix_pack,
+    SUM(compo.quantite * article.prix) AS prix_detail,
+    SUM(compo.quantite * article.prix) - pack.prix AS economie
+FROM composition_pack compo
+JOIN articles pack ON pack.id = compo.id_pack
+JOIN articles article ON article.id = compo.id_article
+GROUP BY pack.id, pack.libelle, pack.prix;
