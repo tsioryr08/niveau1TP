@@ -22,7 +22,7 @@ SET id_categorie = CASE
     WHEN libelle IN ('Stylo a bille bleu', 'Crayon a papier')
         THEN (SELECT id FROM categories WHERE libelle = 'Ecriture')
 
-    WHEN libelle = 'Regle 30 cm'
+    WHEN libelle = 'Regle a 30 cm'
         THEN (SELECT id FROM categories WHERE libelle = 'Geometrie')
 
     WHEN libelle = 'Manuel Mathematiques CM2'

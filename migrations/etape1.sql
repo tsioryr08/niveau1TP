@@ -9,7 +9,7 @@ INSERT INTO articles(libelle, prix) VALUES
 ('Cahier 200 pages', 2000),
 ('Stylo a bille bleu', 500),
 ('Crayon a papier', 300),
-('Regle a 30cm', 800),
+('Regle a 30 cm', 800),
 ('Manuel mathematiques CM2', 15000),
 ('Cartable', 35000);
 
