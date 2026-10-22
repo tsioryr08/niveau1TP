@@ -79,3 +79,17 @@ FROM composition_pack compo
 JOIN articles pack ON pack.id = compo.id_pack
 JOIN articles article ON article.id = compo.id_article
 GROUP BY pack.id, pack.libelle, pack.prix;
+
+-- verification etape10
+SELECT DISTINCT ON (art.id)
+    art.id AS id_article,
+    art.libelle AS article,
+    f.nom AS fournisseur,
+    da.prix_unitaire AS prix_achat
+FROM detail_achat da
+JOIN achat ac ON ac.id = da.id_achat
+JOIN fournisseur f ON f.id = ac.id_fournisseur
+JOIN articles art ON art.id = da.id_article
+WHERE ac.date_achat >= CURRENT_DATE - INTERVAL '30 days'
+  AND ac.date_achat <= CURRENT_DATE
+ORDER BY art.id, da.prix_unitaire ASC;
